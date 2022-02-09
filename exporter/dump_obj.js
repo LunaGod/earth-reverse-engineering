@@ -42,7 +42,7 @@ async function run() {
         : OCTANTS.join("+");
     const objDir = path.join(
       DUMP_OBJ_DIR,
-      `${octName}-${MAX_LEVEL}-${rootEpoch}`
+      `${MAX_LEVEL}/${octName}-${MAX_LEVEL}`
     );
     fs.removeSync(objDir);
     fs.ensureDirSync(objDir);

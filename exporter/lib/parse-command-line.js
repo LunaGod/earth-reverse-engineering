@@ -34,21 +34,6 @@ module.exports = function parseCommandLine(filename) {
     )
       errors.push("Octants must have equal levels.");
     if (!/^\d{1,2}$/.test(max_level)) errors.push("Invalid max_level.");
-    console.log(
-      optional.filter((o) => {
-        if (
-          [
-            "--dump-json",
-            "--dump-raw",
-            "--parallel-search",
-            "--host",
-            "--port",
-          ].some((item) => item.includes(o))
-        ) {
-          return false;
-        }
-      })
-    );
     if (
       optional.filter((o) => {
         if (
@@ -58,6 +43,8 @@ module.exports = function parseCommandLine(filename) {
             "--parallel-search",
             "--host",
             "--port",
+            "--username",
+            "--password",
           ].some((item) => item.includes(o))
         ) {
           return false;
@@ -76,6 +63,20 @@ module.exports = function parseCommandLine(filename) {
     process.env.P_IP = host || "";
     process.env.P_PORT = port || "";
     console.log(`use proxy server:http://${host}:${port}`);
+  }
+
+  if (
+    optional.some((o) => o.includes("--username")) &&
+    optional.some((o) => o.includes("--password"))
+  ) {
+    const username = optional
+      .find((i) => i.includes("--username"))
+      .split("=")[1];
+    const password = optional
+      .find((i) => i.includes("--password"))
+      .split("=")[1];
+    process.env.P_USER = username || "";
+    process.env.P_PASSWORD = password || "";
   }
 
   if (errors.length > 0) {

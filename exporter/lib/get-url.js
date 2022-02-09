@@ -33,9 +33,18 @@ async function _getUrl(url) {
     const host = process.env.P_IP;
     const port = parseInt(process.env.P_PORT);
 
+    const username = encodeURIComponent(process.env.P_USER);
+    const password = encodeURIComponent(process.env.P_PASSWORD);
+
+    let proxyUrl = `http://`;
+    if (username && password) {
+      proxyUrl += `${username}:${password}@`;
+    }
+    proxyUrl += `${host}:${port}`;
     const opt = URL.parse(url);
+
     if (host && port) {
-      opt.agent = new HttpsProxyAgent(`http://${host}:${port}`);
+      opt.agent = new HttpsProxyAgent(proxyUrl);
     }
     (/^https:/.test(url) ? https : http)
       .get(opt, (resp) => {

@@ -26,6 +26,12 @@ async function run() {
   if (p_ip && p_port) {
     console.log(`use proxy server:http://${p_ip}:${p_port}`);
   }
+  let [p_user, p_password] = [process.argv[6], process.argv[7]];
+
+  if (p_user && p_password) {
+    process.env.P_USER = p_user || "";
+    process.env.P_PASSWORD = p_password || "";
+  }
 
   // start
   let [lat, lon] = [process.argv[2], process.argv[3]];

@@ -38,7 +38,7 @@ only supports http proxy
 # before
 node lat_long_to_octant.js 37.420806884765625 -122.08419799804688
 # after
-node lat_long_to_octant.js 37.420806884765625 -122.08419799804688 127.0.0.1 7890
+node lat_long_to_octant.js 37.420806884765625 -122.08419799804688 127.0.0.1 7890 user1 password1
 
 ```
 
@@ -48,6 +48,6 @@ node lat_long_to_octant.js 37.420806884765625 -122.08419799804688 127.0.0.1 7890
 # before
 node dump_obj.js 20527061605273514 20
 # after
-node dump_obj.js 20527061605273514 20 --host=127.0.0.1 --port=7890
+node dump_obj.js 20527061605273514 20 --host=127.0.0.1 --port=7890 --username=user1 --password=password1
 
 ```

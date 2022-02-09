@@ -9,9 +9,6 @@ module.exports = function parseCommandLine(filename) {
     { r: [], o: [] }
   );
 
-  console.log("required", required);
-  console.log("optional", optional);
-
   const octants = required.slice(0, required.length - 1);
   const [max_level] = required.slice(-1);
 
